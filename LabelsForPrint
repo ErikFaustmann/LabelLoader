@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+#nullable disable
+
+namespace AX_Data_Provider.Models
+{
+    public partial class LabelsForPrint
+    {
+        public decimal LineNum { get; set; }
+        public string PackProcessId { get; set; }
+        public string NodeId { get; set; }
+        public string ParentNodeId { get; set; }
+        public int NodeType { get; set; }
+        public string OurName { get; set; }
+        public string OurStreet { get; set; }
+        public string OurZip { get; set; }
+        public string OurCity { get; set; }
+        public string CustId { get; set; }
+        public string CustName { get; set; }
+        public string CustStreet { get; set; }
+        public string CustZip { get; set; }
+        public string CustCity { get; set; }
+        public string CustPlant { get; set; }
+        public string CustUnloadingPoint { get; set; }
+        public int Label { get; set; }
+        public string DeliveryNote { get; set; }
+        public string OurSupplierNumber { get; set; }
+        public string CustForwarderRel { get; set; }
+        public decimal Amount { get; set; }
+        public decimal NetKg { get; set; }
+        public decimal CrossKg { get; set; }
+        public decimal Weight { get; set; }
+        public string CustItemName { get; set; }
+        public string PackageId { get; set; }
+        public string PackagingType { get; set; }
+        public int? InnerPackagingCount { get; set; }
+        public string ItemName { get; set; }
+        public string ItemId { get; set; }
+        public decimal Depth { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
+        public string DrawingNumber { get; set; }
+    }
+}
