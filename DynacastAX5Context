@@ -1,0 +1,156 @@
+using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using AX_Data_Provider.Models;
+
+#nullable disable
+
+namespace AX_Data_Provider.Data
+{
+    public partial class DynacastAX5Context : DbContext
+    {
+        public DynacastAX5Context()
+        {
+        }
+
+        public DynacastAX5Context(DbContextOptions<DynacastAX5Context> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<LabelsForPrint> LabelsForPrints { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=SRV-AX-DEV-01,49328;Database=DynacastAX5_Test;UID=pdeuser;PWD=JuiyWxjp5P;");
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LabelsForPrint>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("LabelsForPrint");
+
+                entity.Property(e => e.Amount).HasColumnType("numeric(28, 12)");
+
+                entity.Property(e => e.CrossKg)
+                    .HasColumnType("numeric(1, 1)")
+                    .HasColumnName("CrossKG");
+
+                entity.Property(e => e.CustCity)
+                    .IsRequired()
+                    .HasMaxLength(60);
+
+                entity.Property(e => e.CustForwarderRel)
+                    .IsRequired()
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.CustId)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.CustItemName).HasMaxLength(20);
+
+                entity.Property(e => e.CustName)
+                    .IsRequired()
+                    .HasMaxLength(60);
+
+                entity.Property(e => e.CustPlant)
+                    .IsRequired()
+                    .HasMaxLength(5);
+
+                entity.Property(e => e.CustStreet)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.CustUnloadingPoint)
+                    .IsRequired()
+                    .HasMaxLength(5);
+
+                entity.Property(e => e.CustZip)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.DeliveryNote)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Depth).HasColumnType("numeric(28, 12)");
+
+                entity.Property(e => e.DrawingNumber).HasMaxLength(60);
+
+                entity.Property(e => e.Height).HasColumnType("numeric(28, 12)");
+
+                entity.Property(e => e.ItemId)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.ItemName)
+                    .IsRequired()
+                    .HasMaxLength(60);
+
+                entity.Property(e => e.LineNum).HasColumnType("numeric(28, 12)");
+
+                entity.Property(e => e.NetKg)
+                    .HasColumnType("numeric(1, 1)")
+                    .HasColumnName("NetKG");
+
+                entity.Property(e => e.NodeId)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.OurCity)
+                    .IsRequired()
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OurName)
+                    .IsRequired()
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OurStreet)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OurSupplierNumber)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.OurZip)
+                    .IsRequired()
+                    .HasMaxLength(4)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PackProcessId)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.PackageId)
+                    .IsRequired()
+                    .HasMaxLength(22)
+                    .HasColumnName("PackageID");
+
+                entity.Property(e => e.PackagingType).HasMaxLength(20);
+
+                entity.Property(e => e.ParentNodeId)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Weight).HasColumnType("numeric(28, 12)");
+
+                entity.Property(e => e.Width).HasColumnType("numeric(28, 12)");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
+}
